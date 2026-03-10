@@ -60,10 +60,10 @@ def romanValue(r):
         return 1000
     return -1
 
-# returns decimal value of roman numeral
+# returns decimal value of page number
 def getNumber(s):
 	try:
-		return(int(s))+start-1
+		return(int(s))+start-1	# la numerazione reale parte da start(-1 perché l'indice parte da 0)
 	except ValueError:
 		pass
 	res = 0
@@ -123,12 +123,11 @@ with open("%s" % file_outline, 'r') as f:
 for item in outline_items:
 	print(repr(item))
 
-# inserisco numerazione logica con numeri romani
 with pikepdf.open(file_input) as pdf:
+	# inserisco numerazione logica con numeri romani
 	# Creiamo la struttura dei numeri di pagina (PageLabels)
 	# /Nums è un array dove ogni coppia è: [indice_pagina_inizio, dizionario_stile]
 	# L'indice parte da 0 (0 = prima pagina del PDF)
-	
 	page_labels = Dictionary({
 		"/Nums": Array([
 			0, Dictionary({
@@ -141,7 +140,6 @@ with pikepdf.open(file_input) as pdf:
 			})
 		])
 		})
-
 	# Inseriamo il dizionario nel 'Catalog' (la radice del PDF)
 	pdf.Root.PageLabels = page_labels
 
