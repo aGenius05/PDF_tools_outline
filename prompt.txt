@@ -1,0 +1,34 @@
+Dato un file pdf leggilo e trova in quali pagine si trovano titoli, sezioni, sottosezioni e paragrafi.
+Fatto ciò restituisci in output un testo fatto come segue:
+--esempio---
+1 Title of Book
+2 Table of Contents
+
+1 sezione 1
+ 2 sottosezione 1.1
+ 3 sottosezione 1.2
+ 4 sottosezione 1.3
+  5 paragrafo 1.3.1
+  6 paragrafo 1.3.2
+  7 paragrafo 1.3.3
+ 8 sottosezione 1.4
+  9 paragrafo 1.4.1
+ 10 sottosezione 1.5
+
+12 sezione 2
+ 12 sottosezione 2.1
+ 13 sottosezione 2.2
+  14 paragrafo 2.2.1
+  15 paragrafo 2.2.2
+
+23 sezione 3 
+ 22 sottosezione 3.1
+  24 paragrafo 3.1.1
+ 25 sottosezione 3.2
+  26 paragrafo 3.2.1
+   27 sottoparagrafo 3.2.1.1
+29 sottosezione 3.3
+30 sottosezione 3.4
+----
+dove ogni riga indica il numero di pagina seguito dal titolo della sezione/sottosezione/paragrafo indentato con spazi in base a quando è in basso(sezione 0 spazi, sottosezione 1...).
+non aggiungere riferimenti del tipo "cite:" e genera in output un file .txt. Includi eventuali riferimenti(ex. "1.1.2") e materiale addizionale(ex. "appendix"). Riporta le pagine prima della pagina iniziale(pagina 1) con i numeri romani minuscoli aggiungendo una voce per la pagina i(titolo) e una per l'indice.
