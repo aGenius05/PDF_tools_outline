@@ -1,4 +1,4 @@
-#!../.venv/bin/python3
+#!/usr/bin/env python3
 import pikepdf
 from pikepdf import Name, Dictionary, Array, OutlineItem
 from sys import argv
