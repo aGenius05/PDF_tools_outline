@@ -10,7 +10,7 @@ build/
 *.egg-info/
 
 # Python
-__pycache__/
+*/__pycache__/*
 *.pyc
 *.pyo
 
