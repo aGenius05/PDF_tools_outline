@@ -109,7 +109,7 @@ with open("%s" % file_outline, 'r') as f:
 			if level == 0:
 				outline_items.append(OutlineElement(title, level, page_number))
 				par = outline_items[-1]
-			elif abs(level - prev) < 2:
+			elif prev - level < 2 or level <= prev:
 				while(prev >= level):
 					prev -= 1
 					par = par.parent
