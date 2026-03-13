@@ -2,23 +2,34 @@
 import pikepdf
 from pikepdf import Name, Dictionary, Array
 from .outline_model import OutlineElement, getNumber
-from sys import argv
-import os
+import argparse
 import re
 
 def getArgs():
-    if len(argv) != 5:
-        print ('Usage: [input_pdf_file] [first_page] [outline_file] [output_pdf_file]\nMore @ https://github.com/agenius05/PDF-outline-adder')
-        exit(-1)
-        
-    # argomenti
-    start = int(argv[2])
-    file_input = argv[1]
-    file_outline = argv[3]
-    file_output = argv[4]
-    return start, file_input, file_outline, file_output
+    parser = argparse.ArgumentParser(
+        prog="PDF_outline_add",
+        description="Add PDF outline and logical page labels"
+    )
 
-def parseOutline(file_outline, start=1, out_parsed_index=False):
+    parser.add_argument("input_pdf_file", help="Path to input PDF")
+    parser.add_argument("first_page", type=int, help="First real page number (1-based)")
+    parser.add_argument("outline_file", help="Path to outline text file")
+    parser.add_argument("output_pdf_file", help="Path to output PDF")
+
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Enable debug output"
+    )
+    parser.add_argument(
+        "--print-parsed-index",
+        action="store_true",
+        help="Print the parsed index"
+    )
+
+    return parser.parse_args()
+
+def parseOutline(file_outline, start=1, args=None):
     r_entry = r"^(\s*)(([ivxlcdm]||\d)+)\s+(.*?)\s*$"          # Outline entry regex 
     outline_items = []
     with open("%s" % file_outline, 'r') as f:
@@ -31,7 +42,7 @@ def parseOutline(file_outline, start=1, out_parsed_index=False):
                 title = parts[3]
                 page_number = getNumber(parts[1], start)
                 level = int(parts[0].count(' '))
-                if os.environ.get("DEBUG") == "1":
+                if args and args.debug:
                     print("title: %s, page number: %s, level: %s, prev: %s" % (title, page_number, level, prev))
                 if level == 0:
                     outline_items.append(OutlineElement(title, level, page_number))
@@ -47,7 +58,7 @@ def parseOutline(file_outline, start=1, out_parsed_index=False):
                 prev = level
 
     # stampo l'indice parsato (debug)
-    if out_parsed_index:
+    if args and args.print_parsed_index:
         for item in outline_items:
             print(repr(item))
 
@@ -84,10 +95,13 @@ def writeOutline(pdf, outline_items):
 def main():
     # prendo gli argomenti
     args = getArgs()
-    start, file_input, file_outline, file_output = args # TODO: better way to do this? maybe with argparse?
+    file_input = args.input_pdf_file
+    start = args.first_page
+    file_outline = args.outline_file
+    file_output = args.output_pdf_file
 
     # parsing indice
-    outline_items = parseOutline(file_outline, start, out_parsed_index=False)
+    outline_items = parseOutline(file_outline, start, args)
 
     with pikepdf.open(file_input) as pdf:
         # inserisco numerazione logica con numeri romani
