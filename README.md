@@ -41,3 +41,4 @@ Per costruire il file dell'indice risulta molto efficace creare un `Agent` perso
 - [ ] documentare meglio
 - [ ] implementare CI/CD per creare requirements, testare, buildare e pubblicare
 - [ ] informazioni giuste riguardo alla versione
+- [ ] controllare che i file esistano
