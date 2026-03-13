@@ -1,5 +1,4 @@
-*.pdf
-example/*
+*/out.pdf
 
 # venv
 .venv/

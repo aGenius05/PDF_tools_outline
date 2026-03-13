@@ -22,12 +22,12 @@ def getArgs():
         help="Enable debug output"
     )
     parser.add_argument(
-        "--print-parsed-index",
+        "--verbose",
         action="store_true",
         help="Print the parsed index"
     )
 
-    return parser.parse_args()
+    return parser
 
 def parseOutline(file_outline, start=1, args=None):
     r_entry = r"^(\s*)(([ivxlcdm]||\d)+)\s+(.*?)\s*$"          # Outline entry regex 
@@ -58,7 +58,7 @@ def parseOutline(file_outline, start=1, args=None):
                 prev = level
 
     # stampo l'indice parsato (debug)
-    if args and args.print_parsed_index:
+    if args and args.verbose:
         for item in outline_items:
             print(repr(item))
 
@@ -94,7 +94,7 @@ def writeOutline(pdf, outline_items):
 
 def main():
     # prendo gli argomenti
-    args = getArgs()
+    args = getArgs().parse_args()
     file_input = args.input_pdf_file
     start = args.first_page
     file_outline = args.outline_file
