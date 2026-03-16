@@ -1,11 +1,14 @@
 from pikepdf import OutlineItem
 
 class OutlineElement:
-	def __init__(self, title, level, page_number, parent=None):
+	def __init__(self, title, level, page_number, parent: OutlineElement = None):
 		self.title = title
 		self.level = level
 		self.page_number = page_number
 		self.parent = parent
+		if parent is not None:
+			if parent.page_number > self.page_number:
+				raise Exception("Error: page numbers must be in increasing order: page title: %s, page number: %s, level: %s but parent is at page %s\n" % (title, page_number, level, parent.page_number))
 		self.children = []
 	
 	def add_child(self, child):
@@ -21,7 +24,7 @@ class OutlineElement:
 			return node
 	
 	def __repr__(self):
-		text = (self.level*"  ")+str(self.page_number)+" "+self.title
+		text = (self.level*" ")+str(self.page_number)+" "+self.title
 		if self.children != []:
 			for child in self.children:
 				text += "\n" + repr(child)
@@ -57,6 +60,8 @@ def getNumber(s, start=1):
 		
 		# get value of current symbol
 		s1 = romanValue(s[i])
+		if s1 == -1:
+			raise Exception("Error: invalid page number: %s" % s)
 
 		# compare with the next symbol if it exists
 		if i + 1 < len(s):

@@ -1,7 +1,9 @@
-# PDF-outline-adder
+# PDF_outline
 Un semplice strumento CLI ideato per tutti quegli studenti che nel tentativo di risparmiare un po' di peso nello zaino si convertono al digitale ma "trovano" soltanto pdf senza indice e soprattutto con una numerazione sfalsata a causa di indice, prefazione e quant altro.
 
 ## Installazione
+### uv
+
 ### pipx
 
 
@@ -35,9 +37,10 @@ dove `file_input` è il pdf che si vuole lavorare, `prima_pagina` è il numero d
 Per costruire il file dell'indice risulta molto efficace creare un `Agent` personalizzato di Gemini(Gem). Per fare ciò fornire il [prompt](./prompt.txt).
 
 # TODO
-- [ ] esporta indice esistente
 - [ ] implementare unittest
-- [ ] scrivere istruzioni per installare con `pipx`
 - [ ] implementare CI/CD per creare requirements, testare, buildare e pubblicare
-- [ ] informazioni giuste riguardo alla versione
-- [ ] controllare che i file esistano
+- [ ] esporta indice esistente
+- [ ] scrivere istruzioni per installare con `pipx`
+- [ ] automatizzare publishment pypi
+- [ ] versione corretta su build
+- [ ] pagine doppie con numerazione giusta

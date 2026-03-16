@@ -3,9 +3,9 @@ requires = ["setuptools>=80", "setuptools-scm[simple]>=9.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "PDF_outline_adder"
+name = "PDF_outline"
 dynamic = ["version"]
-description = "A tool to add an outline to a PDF file and shift page numbers"
+description = "A tool to edit the outline of a PDF file and shift page numbers to match printed ones"
 authors = [
   {name = "agenius05"},
 ]
@@ -14,11 +14,18 @@ requires-python = ">=3.14"
 dependencies = [
     "pikepdf>=10.5.0",
 ]
-license-files = ["LICENCE"]
+license-files = ["LICENSE"]
 keywords=["cli", "tool"]
 
+[tool.setuptools.packages.find]
+where = ["scr"]
+
 [project.scripts]
-PDF_outline_add = "scr.main:main"
+PDF_outline = "main:main"
+
+[tool.setuptools_scm]
+fallback_version="0+unknown"
+local_scheme = "no-local-version"
 
 [project.urls]
 Homepage="https://github.com/agenius05/PDF-outline-adder"

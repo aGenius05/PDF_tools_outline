@@ -1,0 +1,57 @@
+i titolo
+1 Capitolo 1: Sistemi di Controllo Caotico
+ 1 Sezione: Introduzione alle Turbolenze
+  1 Sottosezione: Modelli di Fluidodinamica
+   2 Sottosottosezione: Equazioni di Navier-Stokes
+    2 Paragrafo: Analisi delle Micro-Correnti
+     3 Sottoparagrafo: Dettaglio Molecolare A
+     3 Sottoparagrafo: Dettaglio Molecolare B
+     3 Sottoparagrafo: Dettaglio Molecolare C
+ 4 Sezione: Ritorno alla Teoria Generale
+5 Capitolo 2: Architetture Neurali Massive
+ 5 Sezione: Livelli di Convoluzione
+  5 Paragrafo: Kernel di Filtrazione 3x3
+  6 Paragrafo: Stride e Padding Ottimizzato
+  6 Paragrafo: Funzioni di Attivazione ReLU
+ 7 Sottosezione: Pooling e Sottocampionamento
+  7 Sottosottosezione: Max Pooling
+   8 Paragrafo: Riduzione Dimensionalità
+    8 Sottoparagrafo: Metodo A
+    8 Sottoparagrafo: Metodo B
+  9 Sottosottosezione: Average Pooling
+10 Capitolo 3: Logistica Quantistica
+ 10 Sezione: Distribuzione Interstellare
+  11 Sottosottosezione: Calcolo delle Coordinate
+  11 Sottosottosezione: Gestione del Carburante
+   12 Paragrafo: Idrogeno Liquido
+    12 Sottoparagrafo: Stoccaggio Criogenico
+    12 Sottoparagrafo: Sistemi di Pompaggio
+    13 Sottoparagrafo: Valvole di Sfogo
+  14 Sottosottosezione: Navigazione Autonoma
+15 Capitolo 4: Bioetica Avanzata
+ 15 Sezione: Ingegneria Genetica
+  15 Sottoparagrafo: Modifica CRISPR-Cas9
+  16 Sottoparagrafo: Editing Germinale
+ 17 Sottosezione: Implicazioni Legali
+  17 Sottoparagrafo: Diritto Internazionale
+  18 Sottoparagrafo: Consenso Informato
+19 Capitolo 5: Economia dei Sistemi Chiusi
+ 19 Sezione: Mercati Circolari
+23 Capitolo 6: Robotica di Sciame
+ 23 Sezione: Comunicazione P2P
+  23 Paragrafo: Latenza di Segnale
+   24 Sottoparagrafo: Interferenze Elettromagnetiche
+   24 Sottoparagrafo: Protocolli di Ripristino
+ 25 Sezione: Algoritmi Emergenti
+  25 Sottosezione: Comportamento Gregario
+27 Capitolo 7: Geologia delle Lune Medicee
+ 27 Sezione: Superficie di Europa
+  27 Sottoparagrafo: Analisi dei Ghiacci
+  28 Sottoparagrafo: Presenza di Cloruri
+ 29 Sezione: Attività Vulcanica su Io
+  29 Sottosottosezione: Flussi di Zolfo
+31 Capitolo 8: Archeologia Digitale
+ 31 Sezione: Recupero Supporti Magnetici
+  31 Sottosezione: Floppy Disk 5.25
+   32 Paragrafo: Degrado del Substrato
+    32 Sottoparagrafo: Muffe e Funghi

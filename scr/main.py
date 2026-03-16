@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import pikepdf
 from pikepdf import Name, Dictionary, Array
-from .outline_model import OutlineElement, getNumber
+from outline_model import OutlineElement, getNumber
 import argparse
 import re
 
@@ -12,9 +12,9 @@ def getArgs():
     )
 
     parser.add_argument("input_pdf_file", help="Path to input PDF")
-    parser.add_argument("first_page", type=int, help="First real page number (1-based)")
     parser.add_argument("outline_file", help="Path to outline text file")
     parser.add_argument("output_pdf_file", help="Path to output PDF")
+    parser.add_argument("--start", action="store", dest="first_page", type=int, help="First real page number (1-based)", required=False, default=1)
 
     parser.add_argument(
         "--debug",
@@ -30,9 +30,9 @@ def getArgs():
     return parser
 
 def parseOutline(file_outline, start=1, args=None):
-    r_entry = r"^(\s*)(([ivxlcdm]||\d)+)\s+(.*?)\s*$"          # Outline entry regex 
+    r_entry = r"^(\s*)(([ivxlcdmIVXLCDM]||\d)+)\s+(.*?)\s*$"          # Outline entry regex 
     outline_items = []
-    with open("%s" % file_outline, 'r') as f:
+    with open(file_outline, 'r') as f:
         lines = [line.rstrip() for line in f.readlines() if not (line == '' or line == '\n' or line == '\r')]
         prev = 0
         par = None
@@ -56,6 +56,8 @@ def parseOutline(file_outline, start=1, args=None):
                 else:
                     raise Exception("Error: the difference between the next subsection level and this one must not be bigger than one: page title: %s, page number: %s, level: %s\n%s" % (title, page_number, level, prev))
                 prev = level
+            else:
+                raise Exception("Error: line does not match the expected format: %s" % line)
 
     # stampo l'indice parsato (debug)
     if args and args.verbose:
