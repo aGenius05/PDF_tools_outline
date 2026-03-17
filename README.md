@@ -1,7 +1,8 @@
 # PDF_tools_outline
-Un semplice strumento CLI ideato per tutti quegli studenti che nel tentativo di risparmiare un po' di peso nello zaino si convertono al digitale ma "trovano" soltanto pdf senza indice e soprattutto con una numerazione sfalsata a causa di indice, prefazione e quant altro.
+A simple CLI tool made for all the students who started using PDFs instead of paper book in order to save some weight in their backpack but stumbled into the problem of missing outline and shifted page numbering cause by preface, index and other additions.
 
-## Installazione
+GUIDA IN ITALIANO [QUI](./LEGGIMI.md)
+## How to install
 ### uv
 ```bash
 uv tool install PDF_tools_outline
@@ -12,20 +13,20 @@ uv tool install PDF_tools_outline
 pipx install PDF_tools_outline
 ```
 ## Development
-Cloniamo il repo e installiamo gli hooks
+Clone the repo and install the hooks. It may be necessary to give execution privileges to hooks files
 ```bash
 git clone https://github.com/aGenius05/PDF_outline.git
 cp ./hooks/* .git/hooks
 ```
 
 ### uv
-Si consiglia di utilizzare uv in quanto rende tutto molto più semplice
+It's recommended that you use uv cause it makes everything much simpler
 ```bash
 uv sync
 uv pip install -e .
 ```
-### Installazione manuale
-In questo caso l'installazioen è più laboriosa, avrai bisogno di `python3`, la libreria `pikepdf`, che si consiglia di installare in un virtual environment tramite `pip3` eseguendo
+### manual install
+Manual installation is a bit trickier, you'll need `python3` and `pikepdf` module. You should install it in a virtual environment through `pip3`:
 
 ```bash
 python3 -m venv /path/to/venv/
@@ -33,11 +34,13 @@ source /path/to/venv/bin/activate
 pip3 install -r requirements.txt
 pip3 install -e .
 ```
-infatti il file `requirements.txt` contiene la versione utilizzata da me quando ho sviluppato questo script, con quella sicuramente funzionerà.
-## Pubblicare
-Un workflow automatico analizza se ci sono dei tag sul main e, in tal caso pubblica la versione corrispondente. Notare che gli hooks sono configurati per permettere di eseguire un push con tag sul main soltanto se vengono superati tutti gli unittests.
+Indeed `requirements.txt` contains the version I used and it's guaranteed that it will work on you're computer too.
+## Publishing
+A Github Action is configured to look for commits on the main branch which also have a tag, build the package for those and publish them automatically on PyPi
 
-É possibile anche pubblicare manualmente su PyPi utilizzando il comando
+Note that the hooks make it impossible to push to main tagged commit that haven't passed unittests first.
+
+It's also possible to manually send a package version to PyPi using the command:
 ```bash
 uv build
 uv publish
@@ -48,17 +51,33 @@ python3 -m build
 python3 -m twine dist/*
 ```
 ## Utilizzo
-L'utilizzo è molto semplice, dopo aver attivato il venv:
-
+The usage is very simple:
 ```bash
-PDF_outline_add [file_input.pdf] [prima_pagina] [file_indice] [file_output.pdf]
+PDF_outline_add [file_input.pdf] [file_index] [file_output.pdf] --start [first_page]
 ```
-dove `file_input` è il pdf che si vuole lavorare, `prima_pagina` è il numero della prima pagina effettiva nella numerazione "sbagliata", `file_indice` è il file dove è scritto l'indice e `file_output` è il nome che si vuole dare al file finito.
-
+where `file_input` is the inpput pdf, `first_page` is the number of the first page in the "wrong" ordering, `file_index` is the file where the outline lays and `file_output` is the output's file name.
+The outline file has the following syntax
+```
+[starting page number] [section's name]
+```
+Subsections/paragraphs, if present, are written adding one additional space in front of their line:
+```
+1 first chapter
+ 2 section 1.1
+ 3 section 1.2
+  paragraph
+...
+```
+Pages befor the start of the "real" book, if present, are written using roman numeration:
+```
+i prefazione
+v indicie
+1 inizio libro
+...
+```
 ## Gemini Gem
-Per costruire il file dell'indice risulta molto efficace creare un `Agent` personalizzato di Gemini(Gem). Per fare ciò fornire il [prompt](./prompt.txt).
+To generate index file it's very useful having a custom `Agent` for Gemini(Gem). To do so give it the [prompt](./prompt.txt).
 
 # TODO
 - [ ] esporta indice esistente
 - [ ] pagine doppie con numerazione giusta
-- [ ] readme in più lingue
