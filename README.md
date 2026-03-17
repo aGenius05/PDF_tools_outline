@@ -3,10 +3,14 @@ Un semplice strumento CLI ideato per tutti quegli studenti che nel tentativo di 
 
 ## Installazione
 ### uv
+```bash
+uv tool install PDF_tools_outline
+```
 
 ### pipx
-
-
+```bash
+pipx install PDF_tools_outline
+```
 ## Development
 Cloniamo il repo e installiamo gli hooks
 ```bash
@@ -55,8 +59,6 @@ dove `file_input` è il pdf che si vuole lavorare, `prima_pagina` è il numero d
 Per costruire il file dell'indice risulta molto efficace creare un `Agent` personalizzato di Gemini(Gem). Per fare ciò fornire il [prompt](./prompt.txt).
 
 # TODO
-- [ ] implementare CI/CD per creare requirements, testare, buildare e pubblicare
-- [ ] automatizzare publishment pypi
 - [ ] scrivere istruzioni per installare con `pipx`
 - [ ] esporta indice esistente
 - [ ] pagine doppie con numerazione giusta
