@@ -68,7 +68,7 @@ wheels = [
 ]
 
 [[package]]
-name = "pdf-outline"
+name = "pdf-tools-outline"
 source = { editable = "." }
 dependencies = [
     { name = "pikepdf" },
