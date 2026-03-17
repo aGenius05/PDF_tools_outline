@@ -71,6 +71,8 @@ def addLogicNums(pdf, start):
     # Creiamo la struttura dei numeri di pagina (PageLabels)
     # /Nums è un array dove ogni coppia è: [indice_pagina_inizio, dizionario_stile]
     # L'indice parte da 0 (0 = prima pagina del PDF)
+    if start > len(pdf.pages):
+        raise IndexError("Error: the first real page number is bigger than the total number of pages in the PDF: %s > %s" % (start, len(pdf.pages)))
     page_labels = Dictionary({
         "/Nums": Array([
             0, Dictionary({

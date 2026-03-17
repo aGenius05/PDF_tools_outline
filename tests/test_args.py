@@ -30,6 +30,11 @@ class TestArgs(unittest.TestCase):
 			self.parser.parse_args(["input.pdf", "--start", "ciao", "index.txt", "output.pdf"])
 			self.assertEqual(exc.exception.code, 2)
 			self.assertIn("invalid int value", exc.exception.args[0])
+	def test_negative_start(self):
+		with self.assertRaises(Exception) as exc:
+			self.parser.parse_args(["input.pdf", "--start", "-1", "index.txt", "output.pdf"])
+			self.assertEqual(exc.exception.code, 2)
+			self.assertIn("the first real page number must be greater than or equal to 1", exc.exception.args[0])
 	# TODO: handle extract arguments
 
 if __name__ == '__main__':
