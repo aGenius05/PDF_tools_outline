@@ -24,8 +24,9 @@ where = ["scr"]
 PDF_outline = "main:main"
 
 [tool.setuptools_scm]
-fallback_version="0+unknown"
-local_scheme = "no-local-version"
+version_scheme = "guess-next-dev"  # Genera .devN dopo l'ultimo tag
+local_scheme = "no-local-version" # Rimuove +dYYYYMMDD (consigliato per release)
+fallback_version = "0.1.dev0"
 
 [project.urls]
 Homepage="https://github.com/agenius05/PDF-outline-adder"

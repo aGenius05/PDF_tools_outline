@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if command -v uv >/dev/null 2>&1; then
+    uv export --format requirements-txt --no-emit-project --no-hashes -o requirements.txt
+else
+    pip freeze > requirements.txt
+fi
+
+git add requirements.txt
+python3 -m unittest discover tests/

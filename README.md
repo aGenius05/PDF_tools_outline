@@ -8,6 +8,12 @@ Un semplice strumento CLI ideato per tutti quegli studenti che nel tentativo di 
 
 
 ## Development
+Cloniamo il repo e installiamo gli hooks
+```bash
+git clone https://github.com/aGenius05/PDF_outline.git
+cp ./hooks/* .git/hooks
+```
+
 ### uv
 Si consiglia di utilizzare uv in quanto rende tutto molto più semplice
 ```bash
@@ -43,3 +49,4 @@ Per costruire il file dell'indice risulta molto efficace creare un `Agent` perso
 - [ ] scrivere istruzioni per installare con `pipx`
 - [ ] esporta indice esistente
 - [ ] pagine doppie con numerazione giusta
+- [ ] readme in più lingue
