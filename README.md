@@ -1,4 +1,4 @@
-# PDF_outline
+# PDF_tools_outline
 Un semplice strumento CLI ideato per tutti quegli studenti che nel tentativo di risparmiare un po' di peso nello zaino si convertono al digitale ma "trovano" soltanto pdf senza indice e soprattutto con una numerazione sfalsata a causa di indice, prefazione e quant altro.
 
 ## Installazione
@@ -59,7 +59,6 @@ dove `file_input` è il pdf che si vuole lavorare, `prima_pagina` è il numero d
 Per costruire il file dell'indice risulta molto efficace creare un `Agent` personalizzato di Gemini(Gem). Per fare ciò fornire il [prompt](./prompt.txt).
 
 # TODO
-- [ ] scrivere istruzioni per installare con `pipx`
 - [ ] esporta indice esistente
 - [ ] pagine doppie con numerazione giusta
 - [ ] readme in più lingue
