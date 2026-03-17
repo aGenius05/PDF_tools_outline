@@ -30,7 +30,19 @@ pip3 install -r requirements.txt
 pip3 install -e .
 ```
 infatti il file `requirements.txt` contiene la versione utilizzata da me quando ho sviluppato questo script, con quella sicuramente funzionerà.
+## Pubblicare
+Un workflow automatico analizza se ci sono dei tag sul main e, in tal caso pubblica la versione corrispondente. Notare che gli hooks sono configurati per permettere di eseguire un push con tag sul main soltanto se vengono superati tutti gli unittests.
 
+É possibile anche pubblicare manualmente su PyPi utilizzando il comando
+```bash
+uv build
+uv publish
+```
+oppure con pip
+```bash
+python3 -m build
+python3 -m twine dist/*
+```
 ## Utilizzo
 L'utilizzo è molto semplice, dopo aver attivato il venv:
 
@@ -43,7 +55,6 @@ dove `file_input` è il pdf che si vuole lavorare, `prima_pagina` è il numero d
 Per costruire il file dell'indice risulta molto efficace creare un `Agent` personalizzato di Gemini(Gem). Per fare ciò fornire il [prompt](./prompt.txt).
 
 # TODO
-- [ ] versione corretta su build
 - [ ] implementare CI/CD per creare requirements, testare, buildare e pubblicare
 - [ ] automatizzare publishment pypi
 - [ ] scrivere istruzioni per installare con `pipx`

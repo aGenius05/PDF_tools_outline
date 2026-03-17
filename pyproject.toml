@@ -3,7 +3,7 @@ requires = ["setuptools>=80", "setuptools-scm[simple]>=9.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "PDF_outline"
+name = "PDF_tools_outline"
 dynamic = ["version"]
 description = "A tool to edit the outline of a PDF file and shift page numbers to match printed ones"
 authors = [
@@ -28,6 +28,10 @@ version_scheme = "guess-next-dev"  # Genera .devN dopo l'ultimo tag
 local_scheme = "no-local-version" # Rimuove +dYYYYMMDD (consigliato per release)
 fallback_version = "0.1.dev0"
 
+[[tool.uv.index]]
+url = "https://test.pypi.org/PDF-tools-outline/"
+publish-url = "https://test.pypi.org/legacy/"
+
 [project.urls]
-Homepage="https://github.com/agenius05/PDF-outline-adder"
-Repository="https://github.com/agenius05/PDF-outline-adder"
+Homepage="https://github.com/agenius05/PDF-outline"
+Repository="https://github.com/agenius05/PDF-outline"
