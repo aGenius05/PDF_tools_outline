@@ -37,10 +37,9 @@ dove `file_input` è il pdf che si vuole lavorare, `prima_pagina` è il numero d
 Per costruire il file dell'indice risulta molto efficace creare un `Agent` personalizzato di Gemini(Gem). Per fare ciò fornire il [prompt](./prompt.txt).
 
 # TODO
-- [ ] implementare unittest
-- [ ] implementare CI/CD per creare requirements, testare, buildare e pubblicare
-- [ ] esporta indice esistente
-- [ ] scrivere istruzioni per installare con `pipx`
-- [ ] automatizzare publishment pypi
 - [ ] versione corretta su build
+- [ ] implementare CI/CD per creare requirements, testare, buildare e pubblicare
+- [ ] automatizzare publishment pypi
+- [ ] scrivere istruzioni per installare con `pipx`
+- [ ] esporta indice esistente
 - [ ] pagine doppie con numerazione giusta
