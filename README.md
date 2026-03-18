@@ -35,6 +35,8 @@ pip3 install -r requirements.txt
 pip3 install -e .
 ```
 Indeed `requirements.txt` contains the version I used and it's guaranteed that it will work on you're computer too.
+## Testing
+This project has some automated tests written in the `tests/` dir. They are `unittest` tests and are configured to run before commits and pushes via the `hooks`. The material used in the tests is described in this [file](./tests/tests_description.md).
 ## Publishing
 A Github Action is configured to look for commits on the main branch which also have a tag, build the package for those and publish them automatically on PyPi
 
@@ -79,5 +81,7 @@ v indicie
 To generate index file it's very useful having a custom `Agent` for Gemini(Gem). To do so give it the [prompt](./prompt.txt).
 
 # TODO
-- [ ] esporta indice esistente
-- [ ] pagine doppie con numerazione giusta
+- [ ] export index from existing pdf
+- [ ] right numeration on pages with double pages
+- [ ] --dry flag instead of --verbose
+- [ ] --version flag

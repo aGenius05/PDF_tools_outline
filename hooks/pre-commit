@@ -8,3 +8,12 @@ fi
 
 git add requirements.txt
 python3 -m unittest discover tests/
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+    echo "I test sono falliti. Vuoi procedere comunque col commit? [y/N]"
+		read -r response < /dev/tty
+		if [[ ! "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+			echo "Commit annullato dall'utente."
+			exit 1
+		fi
+fi

@@ -34,6 +34,8 @@ pip3 install -r requirements.txt
 pip3 install -e .
 ```
 infatti il file `requirements.txt` contiene la versione utilizzata da me quando ho sviluppato questo script, con quella sicuramente funzionerà.
+## Testare
+Questo progetto è dotato di test automatizzati. Si tratta di `unittest` scritti nella cartella `tests/`. Questi sono configurati per essere eseguiti prima di ogni commit e push tramite gli `hooks`. Il materiale utilizzato nei test è descritto in questo [file](./tests/tests_description.md).
 ## Pubblicare
 Un workflow automatico analizza se ci sono dei tag sul main e, in tal caso pubblica la versione corrispondente.
 

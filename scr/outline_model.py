@@ -14,6 +14,7 @@ class OutlineElement:
 	def add_child(self, child):
 		self.children.append(child)
 	
+	# function to create corresponding OutlineItem structure for this element and its children
 	def returnNode(self):
 		if self.children == []:
 			return OutlineItem(self.title, self.page_number-1)
