@@ -2,6 +2,7 @@
 import pikepdf
 from pikepdf import Name, Dictionary, Array
 from outline_model import OutlineElement, getNumber
+from importlib.metadata import version
 import argparse
 import re
 
@@ -27,6 +28,8 @@ def getArgs():
         action="store_true",
         help="Print the parsed index"
     )
+
+    parser.add_argument('-v', '--version', action='version', version=version('PDF_tools_outline'))
 
     return parser
 
