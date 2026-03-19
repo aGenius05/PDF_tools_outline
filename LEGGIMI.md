@@ -55,9 +55,9 @@ python3 -m twine dist/*
 L'utilizzo è molto semplice, dopo aver attivato il venv:
 
 ```bash
-PDF_outline_add [file_input.pdf] [file_indice] [file_output.pdf] --start [prima_pagina]
+PDF_outline_add [file_input.pdf] [file_indice] {-o [file_output.pdf]} {-s [prima_pagina]}
 ```
-dove `file_input` è il pdf che si vuole lavorare, `prima_pagina` è il numero della prima pagina effettiva nella numerazione "sbagliata", `file_indice` è il file dove è scritto l'indice e `file_output` è il nome che si vuole dare al file finito.
+dove `file_input` è il pdf che si vuole lavorare, `prima_pagina` è il numero della prima pagina effettiva nella numerazione "sbagliata", `file_indice` è il file dove è scritto l'indice e `file_output` è il nome che si vuole dare al file finito. Se `file_output` non è specificato viene sovrascritto `file_input`.
 il file dell'indice ha la seguente sintassi
 ```
 [pagina inizio] [nome capitolo]

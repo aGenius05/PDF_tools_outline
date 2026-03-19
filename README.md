@@ -55,9 +55,9 @@ python3 -m twine dist/*
 ## Utilizzo
 The usage is very simple:
 ```bash
-PDF_outline_add [file_input.pdf] [file_index] [file_output.pdf] --start [first_page]
+PDF_outline_add [file_input.pdf] [file_index] {-o [file_output.pdf]} {-s [first_page]}
 ```
-where `file_input` is the inpput pdf, `first_page` is the number of the first page in the "wrong" ordering, `file_index` is the file where the outline lays and `file_output` is the output's file name.
+where `file_input` is the inpput pdf, `first_page` is the number of the first page in the "wrong" ordering, `file_index` is the file where the outline lays and `file_output` is the output's file name. If `file_output` isn't specified `file_input` will be overwritten.
 The outline file has the following syntax
 ```
 [starting page number] [section's name]
