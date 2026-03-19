@@ -2,6 +2,7 @@ import unittest
 from scr.main import addLogicNums
 from types import SimpleNamespace
 import pikepdf
+import tempfile
 
 class TestLogicNumbers(unittest.TestCase):
 	def setUp(self):
@@ -14,7 +15,9 @@ class TestLogicNumbers(unittest.TestCase):
 			if ref is not None:
 				with pikepdf.open(ref) as ref:
 					self.assertEqual(pdf.Root.PageLabels, ref.Root.PageLabels)
-			pdf.save('/tmp/out.pdf')
+			with tempfile.NamedTemporaryFile(suffix='.pdf') as tmp:
+				# Il file esiste finché sei dentro questo blocco
+				pdf.save(tmp.name)
 	def test_onlyRealPages(self):
 		# start=1
 		self.writeNums("tests/sample1/input.pdf", "tests/sample1/pdf_ref.pdf")
