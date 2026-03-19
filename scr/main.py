@@ -36,8 +36,9 @@ def parseOutline(file_outline, start=1, args=None):
         lines = [line.rstrip() for line in f.readlines() if not (line == '' or line == '\n' or line == '\r')]
         prev = 0
         par = None
+        syntax = re.compile(r_entry)
         for line in lines:
-            parts = re.match(r_entry, line).groups()
+            parts = syntax.match(line).groups()
             if len(parts) >= 3:
                 title = parts[3]
                 page_number = getNumber(parts[1], start)
