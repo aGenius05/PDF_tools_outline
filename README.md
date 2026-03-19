@@ -81,10 +81,8 @@ v indicie
 To generate index file it's very useful having a custom `Agent` for Gemini(Gem). To do so give it the [prompt](./prompt.txt).
 
 # TODO
-- [ ] compile re
 - [ ] export index from existing pdf
 - [ ] right numeration on pages with double pages
-- [ ] --dry flag instead of --verbose
 - [ ] --version flag
 - [ ] standard output=input
 - [ ] y-ordinate for outline entries?

@@ -14,10 +14,10 @@ class TestArgs(unittest.TestCase):
 		self.assertEqual(args.first_page, 22)
 		self.assertEqual(args.outline_file, "index.txt")
 		self.assertEqual(args.output_pdf_file, "output.pdf")
-	def test_verbose(self):
-		# test the verbose flag
-		args = self.parser.parse_args(["input.pdf", "--start", "12", "index.txt", "output.pdf", "--verbose"])
-		self.assertTrue(args.verbose)
+	def test_dry(self):
+		# test the dry flag
+		args = self.parser.parse_args(["input.pdf", "--start", "12", "index.txt", "output.pdf", "--dry"])
+		self.assertTrue(args.dry)
 	def test_debug(self):
 		# test the debug flag
 		args = self.parser.parse_args(["input.pdf", "--start", "12", "index.txt", "output.pdf", "--debug"])

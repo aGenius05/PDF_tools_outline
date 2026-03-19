@@ -5,7 +5,7 @@ import pikepdf
 
 class TestLogicNumbers(unittest.TestCase):
 	def setUp(self):
-		self.args = SimpleNamespace(debug=False, verbose=False)
+		self.args = SimpleNamespace(debug=False, dry=False)
 		self.start = 1
 	def writeNums(self, file, ref=None):
 		# write logical page numbers to the pdf file and compare them with the reference if provided

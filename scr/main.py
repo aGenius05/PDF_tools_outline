@@ -14,7 +14,7 @@ def getArgs():
     parser.add_argument("input_pdf_file", help="Path to input PDF")
     parser.add_argument("outline_file", help="Path to outline text file")
     parser.add_argument("output_pdf_file", help="Path to output PDF")
-    parser.add_argument("--start", action="store", dest="first_page", type=int, help="First real page number (1-based)", required=False, default=1)
+    parser.add_argument("-s", "--start", action="store", dest="first_page", type=int, help="First real page number (1-based)", required=False, default=1)
 
     parser.add_argument(
         "--debug",
@@ -22,7 +22,8 @@ def getArgs():
         help="Enable debug output"
     )
     parser.add_argument(
-        "--verbose",
+        "-d",
+        "--dry",
         action="store_true",
         help="Print the parsed index"
     )
@@ -61,7 +62,7 @@ def parseOutline(file_outline, start=1, args=None):
                 raise Exception("Error: line does not match the expected format: %s" % line)
 
     # stampo l'indice parsato (debug)
-    if args and args.verbose:
+    if args and args.dry:
         for item in outline_items:
             print(repr(item))
 
