@@ -14,7 +14,7 @@ def getArgs():
 
     parser.add_argument("input_pdf_file", help="Path to input PDF")
     parser.add_argument("outline_file", help="Path to outline text file")
-    parser.add_argument("output_pdf_file", help="Path to output PDF")
+    parser.add_argument("-o", "--output", dest="output_pdf_file", help="Path to output PDF", required=False)
     parser.add_argument("-s", "--start", action="store", dest="first_page", type=int, help="First real page number (1-based)", required=False, default=1)
 
     parser.add_argument(
@@ -107,12 +107,12 @@ def main():
     file_input = args.input_pdf_file
     start = args.first_page
     file_outline = args.outline_file
-    file_output = args.output_pdf_file
+    file_output = args.output_pdf_file or args.input_pdf_file
 
     # parsing indice
     outline_items = parseOutline(file_outline, start, args)
 
-    with pikepdf.open(file_input) as pdf:
+    with pikepdf.open(file_input, allow_overwriting_input=bool(file_input == file_output)) as pdf:
         # inserisco numerazione logica con numeri romani
         addLogicNums(pdf, start)
 
