@@ -6,32 +6,33 @@ from importlib.metadata import version
 import argparse
 import re
 
-def getArgs():
+def getArgs(args_input=None):
+    # general attributes
     parser = argparse.ArgumentParser(
         prog="PDF_outline_add",
-        description="Add PDF outline and logical page labels"
-    )
-
-    parser.add_argument("input_pdf_file", help="Path to input PDF")
-    parser.add_argument("outline_file", help="Path to outline text file")
-    parser.add_argument("-o", "--output", dest="output_pdf_file", help="Path to output PDF", required=False)
-    parser.add_argument("-s", "--start", action="store", dest="first_page", type=int, help="First real page number (1-based)", required=False, default=1)
-
-    parser.add_argument(
-        "--debug",
-        action="store_true",
-        help="Enable debug output"
-    )
-    parser.add_argument(
-        "-d",
-        "--dry",
-        action="store_true",
-        help="Print the parsed index"
-    )
-
+        description="Manipulate PDF outline and logical page labels"
+        )
+    subparsers = parser.add_subparsers(dest="mode", help="Mode of operation: write, extract")
     parser.add_argument('-v', '--version', action='version', version=version('PDF_tools_outline'))
+    
+    # writer attributes
+    writer_parser = subparsers.add_parser("write", help="Write mode: write the outline from a text file to a PDF")
+    writer_parser.add_argument("input_pdf_file", help="Path to input PDF")
+    writer_parser.add_argument("outline_file", help="Path to outline text file")
+    writer_parser.add_argument("-o", "--output", metavar="<path>", dest="output_file", help="Path to output PDF, default: overwrite file", required=False, default=None)
+    writer_parser.add_argument("-s", "--start", action="store", dest="first_page", metavar="<number>", type=int, help="First real page number (1-based)", required=False, default=1)
+    writer_parser.add_argument("-d", "--dry", action="store_true", help="Print the parsed index")
+    writer_parser.add_argument("--debug", action="store_true", help="Enable debug output")
 
-    return parser
+
+    # exrtactor attributes
+    extractor_parser = subparsers.add_parser("extract", help="Extract mode: extract the outline from a PDF and save it in a text file")
+    extractor_parser.add_argument("input_pdf_file", help="Path to input PDF")
+    extractor_parser.add_argument("-o", "--output", metavar="<path>", dest="output_file", help="Path to extracted outline file, default: outline.txt", required=False, default="outline.txt")
+    extractor_parser.add_argument("--debug", action="store_true", help="Enable debug output")
+
+    args = parser.parse_args(args_input)
+    return args
 
 def parseOutline(file_outline, start=1, args=None):
     r_entry = r"^(\s*)(([ivxlcdmIVXLCDM]||\d)+)\s+(.*?)\s*$"          # Outline entry regex 
@@ -103,27 +104,32 @@ def writeOutline(pdf, outline_items):
 
 def main():
     # prendo gli argomenti
-    args = getArgs().parse_args()
-    file_input = args.input_pdf_file
-    start = args.first_page
-    file_outline = args.outline_file
-    file_output = args.output_pdf_file or args.input_pdf_file
+    args = getArgs()
+    if args.mode == "write":
+        file_input = args.input_pdf_file
+        start = args.first_page
+        file_outline = args.outline_file
+        file_output = args.output_file or args.input_pdf_file
 
-    # parsing indice
-    outline_items = parseOutline(file_outline, start, args)
+        # parsing indice
+        outline_items = parseOutline(file_outline, start, args)
 
-    with pikepdf.open(file_input, allow_overwriting_input=bool(file_input == file_output)) as pdf:
-        # inserisco numerazione logica con numeri romani
-        addLogicNums(pdf, start)
+        with pikepdf.open(file_input, allow_overwriting_input=bool(file_input == file_output)) as pdf:
+            # inserisco numerazione logica con numeri romani
+            addLogicNums(pdf, start)
+            # scrivo indice da file
+            writeOutline(pdf, outline_items)
+            # Salva il nuovo file
+            pdf.save(file_output)
 
-        # scrivo indice da file
-        writeOutline(pdf, outline_items)
+        print(f"File salvato con successo come: {file_output}")
+        exit(0)
 
-        # Salva il nuovo file
-        pdf.save(file_output)
-
-    print(f"File salvato con successo come: {file_output}")
-    exit(0)
+    elif args.mode == "extract":
+        file_input = args.input_pdf_file
+        file_output = args.output_file
+    else:
+        raise Exception("Error: invalid mode of operation: %s" % args.mode)
 
 if __name__ == "__main__":
     main()
