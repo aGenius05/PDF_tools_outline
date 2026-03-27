@@ -129,7 +129,7 @@ def main():
         file_input = args.input_pdf_file
         file_output = args.output_file
     else:
-        raise Exception("Error: invalid mode of operation: %s" % args.mode)
+        raise SystemExit("Error: invalid mode, must be 'write' or 'extract'")
 
 if __name__ == "__main__":
     main()

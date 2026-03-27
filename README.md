@@ -85,3 +85,4 @@ To generate index file it's very useful having a custom `Agent` for Gemini(Gem).
 - [ ] right numeration on pages with double pages
 - [ ] y-ordinate for outline entries?
 - [ ] in place edit?
+- [ ] tablevel to accept files with n-tabs indentation
