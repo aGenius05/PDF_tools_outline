@@ -1,12 +1,12 @@
 from pikepdf import OutlineItem, Array, Page, String, Name, NameTree
 import sys
 class OutlineElement:
-	def __init__(self, title, level, page_number, parent: OutlineElement = None):
+	def __init__(self, title, level, page_number, start, parent: OutlineElement = None):
 		self.title = title
 		self.level = level
 		self.page_number = page_number
 		self.parent = parent
-		# TODO: set start variable
+		self.start = start
 		if parent is not None:
 			if parent.page_number > self.page_number:
 				raise Exception("Error: page numbers must be in increasing order: page title: %s, page number: %s, level: %s but parent is at page %s\n" % (title, page_number, level, parent.page_number))
@@ -17,11 +17,17 @@ class OutlineElement:
 		page_number = page.index+1 if page is not None else None
 		if page_number is None:
 			print("ERROR: cannot retrive outline page number!!", file=sys.stderr)
-		if start is not None:
-			# TODO: get start from outline
-			if page_number>start:
-				page_number-=start
-		element = OutlineElement(item.title, level, page_number=page_number)
+		if start == None:
+			try:
+				numbering = pdf.Root.PageLabels.Nums
+				for page, index in [(numbering[x], numbering[x+1]) for x in range(0, len(numbering), 2)]:
+					if index["/S"] == Name("/D"):
+						start = page
+			except Exception:
+				start = 0
+		if page_number>start:
+			page_number-=start
+		element = OutlineElement(item.title, level, page_number=page_number, start=start)
 		for child in item.children:
 			element.add_child(OutlineElement.from_OutlineItem(child, pdf, level+1, start))
 		return element
