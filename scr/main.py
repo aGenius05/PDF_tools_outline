@@ -20,16 +20,17 @@ def getArgs(args_input=None):
     writer_parser.add_argument("input_pdf_file", help="Path to input PDF")
     writer_parser.add_argument("outline_file", help="Path to outline text file")
     writer_parser.add_argument("-o", "--output", metavar="<path>", dest="output_file", help="Path to output PDF, default: overwrite file", required=False, default=None)
-    writer_parser.add_argument("-s", "--start", action="store", dest="first_page", metavar="<number>", type=int, help="First real page number (1-based)", required=False, default=1)
+    writer_parser.add_argument("-s", "--start", action="store", dest="first_page", metavar="<number>", type=int, help="First real page number (1-based)", required=False, default=None)
     writer_parser.add_argument("-d", "--dry", action="store_true", help="Print the parsed index")
     writer_parser.add_argument("--debug", action="store_true", help="Enable debug output")
 
 
-    # exrtactor attributes
+    # extractor attributes
     extractor_parser = subparsers.add_parser("extract", help="Extract mode: extract the outline from a PDF and save it in a text file")
     extractor_parser.add_argument("input_pdf_file", help="Path to input PDF")
     extractor_parser.add_argument("-o", "--output", metavar="<path>", dest="output_file", help="Path to extracted outline file, default: outline.txt", required=False, default="outline.txt")
     extractor_parser.add_argument("--debug", action="store_true", help="Enable debug output")
+    extractor_parser.add_argument("-s", "--start", help="specify book start page different from the one in the pdf. If not specified defaults to PDF's one", default=None, dest="start", type=int, required=False)
 
     args = parser.parse_args(args_input)
     return args
@@ -46,6 +47,7 @@ def parseOutline(file_outline, start=1, args=None):
             parts = syntax.match(line).groups()
             if len(parts) >= 3:
                 title = parts[3]
+                # TODO: if start hasn't been specified get from outline file(first arab page number)
                 page_number = getNumber(parts[1], start)
                 level = int(parts[0].count(' '))
                 if args and args.debug:
@@ -128,6 +130,21 @@ def main():
     elif args.mode == "extract":
         file_input = args.input_pdf_file
         file_output = args.output_file
+
+        outline_items = []
+        with pikepdf.open(file_input) as pdf:
+            with pdf.open_outline() as outline:
+                for item in outline.root:
+                    outline_items.append(OutlineElement.from_OutlineItem(item, pdf, start=args.start))
+        if not args.debug:
+            with open(file_output, 'w') as f:
+                for item in outline_items:
+                    f.write(repr(item) + "\n")
+            print(f"Outline estratto con successo in: {file_output}")
+        else:
+            for item in outline_items:
+                print(repr(item))
+            print("Outline estratto con successo")
     else:
         raise SystemExit("Error: invalid mode, must be 'write' or 'extract'")
 

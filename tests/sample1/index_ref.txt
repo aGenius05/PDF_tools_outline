@@ -1,15 +1,10 @@
-1 Capitolo 1
-
-5 Capitolo 2
-
-9 Capitolo 3
-
-13 Capitolo 4
-
-16 Capitolo 5
-
-24 Capitolo 7
-
-28 Capitolo 8
-
-32 Capitolo 9
+1 1 Introduzione al Progetto
+5 2 Analisi del Contesto
+9 3 Metodologia di Lavoro
+13 4 Sviluppo Tecnico
+17 5 Gestione delle Risorse
+21 6 Protocolli di Sicurezza
+25 7 Fase di Test e Debug
+29 8 Analisi dei Risultati
+33 9 Case Studies e Applicazioni
+37 10 Conclusioni e Prospettive Future

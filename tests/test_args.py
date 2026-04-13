@@ -102,6 +102,7 @@ class TestArgsExtractor(ArgsTestCase):
 		self.assertEqual(args.mode, "extract")
 		self.assertEqual(args.input_pdf_file, "input.pdf")
 		self.assertEqual(args.output_file, "output.txt")
+	# TODO: test for different start position
 
 
 # TODO: handle edit arguments
