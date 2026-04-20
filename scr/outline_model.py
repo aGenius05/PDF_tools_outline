@@ -1,16 +1,19 @@
 from pikepdf import OutlineItem, Array, Page, String, Name, NameTree
 import sys
 class OutlineElement:
-	def __init__(self, title, level, page_number, start, parent: OutlineElement = None):
+	def __init__(self, title, level, page_number, parent: OutlineElement = None):
 		self.title = title
 		self.level = level
 		self.page_number = page_number
 		self.parent = parent
-		self.start = start
+		self._preface = False
 		if parent is not None:
 			if parent.page_number > self.page_number:
 				raise Exception("Error: page numbers must be in increasing order: page title: %s, page number: %s, level: %s but parent is at page %s\n" % (title, page_number, level, parent.page_number))
 		self.children = []
+
+	def set_preface(self):
+		self._preface = True
 	
 	def from_OutlineItem(item: OutlineItem, pdf, level=0, start=None):
 		page = resolve_page_from_item(pdf, item)
@@ -25,9 +28,13 @@ class OutlineElement:
 						start = page
 			except Exception:
 				start = 0
+		preface = True
 		if page_number>start:
 			page_number-=start
-		element = OutlineElement(item.title, level, page_number=page_number, start=start)
+			preface = False
+		element = OutlineElement(item.title, level, page_number=page_number)
+		if preface:
+			element.set_preface()
 		for child in item.children:
 			element.add_child(OutlineElement.from_OutlineItem(child, pdf, level+1, start))
 		return element
@@ -46,12 +53,37 @@ class OutlineElement:
 			return node
 	
 	def __repr__(self):
-		# TODO: use roman number for index
-		text = (self.level*" ")+str(self.page_number)+" "+self.title
+		str_number = int_to_roman(self.page_number) if self._preface else str(self.page_number)
+		text = (self.level*" ")+str_number+" "+self.title
 		if self.children != []:
 			for child in self.children:
 				text += "\n" + repr(child)
 		return text
+
+# this functin return the Roman symbol corresponding to an int
+def int_to_roman(n):
+	if not isinstance(n, int) or n <= 0:
+		raise ValueError("Can only convert positive integers to roman symbol")
+	val = [
+		1000, 900, 500, 400,
+		100, 90, 50, 40,
+		10, 9, 5, 4,
+		1
+		]
+	syb = [
+		"m", "cm", "d", "cd",
+		"c", "xc", "l", "xl",
+		"x", "ix", "v", "iv",
+		"i"
+		]
+	roman_num = ''
+	i = 0
+	while  n > 0:
+		for _ in range(n // val[i]):
+			roman_num += syb[i]
+			n -= val[i]
+		i += 1
+	return roman_num
 
 # this function returns value of a Roman symbol
 def romanValue(r):

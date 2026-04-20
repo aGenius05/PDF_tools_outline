@@ -52,7 +52,7 @@ oppure con pip
 python3 -m build
 python3 -m twine dist/*
 ```
-## Utilizzo
+## Usage
 The usage is very simple:
 ```bash
 PDF_outline_add [file_input.pdf] [file_index] {-o [file_output.pdf]} {-s [first_page]}
@@ -87,3 +87,4 @@ To generate index file it's very useful having a custom `Agent` for Gemini(Gem).
 - [ ] in place edit?
 - [ ] tablevel to accept files with n-tabs indentation
 - [ ] check if previus uri-link need to be preserved and add option eventually
+- [ ] automatic book start page recognition made on main instead of inside the function(must work also for the wirter and i don't want to repeat the same operation over and over)
