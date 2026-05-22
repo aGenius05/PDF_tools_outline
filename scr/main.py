@@ -5,7 +5,12 @@ from outline_model import OutlineElement, getNumber, getExistingStart
 from importlib.metadata import version
 import argparse
 import re
-import sys
+
+def check_positive(value):
+    ivalue = int(value)
+    if ivalue <= 0:
+        raise argparse.ArgumentTypeError(f"{value} is not greater than 0")
+    return ivalue
 
 def getArgs(args_input=None):
     # general attributes
@@ -21,11 +26,11 @@ def getArgs(args_input=None):
     writer_parser.add_argument("outline_file", help="Path to outline text file")
     writer_parser.add_argument(dest="input_pdf_file", help="Path to input PDF", nargs='?')
     writer_parser.add_argument("-o", "--output", metavar="<path>", dest="output_file", help="Path to output PDF, default: overwrite file", required=False, default=None)
-    writer_parser.add_argument("-s", "--start", action="store", dest="first_page", metavar="<number>", type=int, help="First real page number (1-based). Defaults to first arab number page number in the outline file.", required=False, default=None)
+    writer_parser.add_argument("-s", "--start", action="store", dest="first_page", metavar="<number>", type=check_positive, help="First real page number (1-based). Defaults to first arab number page number in the outline file.", required=False, default=None)
     writer_parser.add_argument("-d", "--dry", action="store_true", help="Print the parsed index")
     writer_parser.add_argument("--debug", action="store_true", help="Enable debug output")
-    writer_parser.add_argument("--input-tabsize", "-it", dest="input_tabsize", metavar="<number>", type=int, help="Number of spaces corresponding to a tab in the outline file, default: 1", required=False, default=1)
-    writer_parser.add_argument("--output-tabsize", "-ot", dest="output_tabsize", metavar="<number>", type=int, help="Number of spaces corresponding to a tab in the parsed output, default: 1", required=False, default=1)
+    writer_parser.add_argument("--input-tabsize", "-it", dest="input_tabsize", metavar="<number>", type=check_positive, help="Number of spaces corresponding to a tab in the outline file, default: 1", required=False, default=1)
+    writer_parser.add_argument("--output-tabsize", "-ot", dest="output_tabsize", metavar="<number>", type=check_positive, help="Number of spaces corresponding to a tab in the parsed output, default: 1", required=False, default=1)
 
 
     # extractor attributes
@@ -33,10 +38,13 @@ def getArgs(args_input=None):
     extractor_parser.add_argument("input_pdf_file", help="Path to input PDF")
     extractor_parser.add_argument("-o", "--output", metavar="<path>", dest="output_file", help="Path to extracted outline file, default: outline.txt", required=False, default="outline.txt")
     extractor_parser.add_argument("--debug", action="store_true", help="Enable debug output")
-    extractor_parser.add_argument("-s", "--start", help="specify book start page different from the one in the pdf. If not specified defaults to PDF's one", default=None, dest="start", type=int, required=False)
-    extractor_parser.add_argument("--tabsize", "-t", dest="tabsize", metavar="<number>", type=int, help="Number of spaces corresponding to a tab in the outline file, default: 1", required=False, default=1)
+    extractor_parser.add_argument("-s", "--start", help="specify book start page different from the one in the pdf. If not specified defaults to PDF's one", default=None, dest="start", type=check_positive, required=False)
+    extractor_parser.add_argument("--tabsize", "-t", dest="tabsize", metavar="<number>", type=check_positive, help="Number of spaces corresponding to a tab in the outline file, default: 1", required=False, default=1)
 
     args = parser.parse_args(args_input)
+    if args.mode == "write":
+        if not args.dry and not args.input_pdf_file:
+            raise SystemExit("PDF_outline_add write: error: the following arguments are required: input_pdf_file")
     return args
 
 def parseOutline(file_outline, start=1, args=None):
@@ -49,15 +57,16 @@ def parseOutline(file_outline, start=1, args=None):
         syntax = re.compile(r_entry)
         for line in lines:
             parts = syntax.match(line).groups()
-            if len(parts) >= 3:
+            if len(parts) >= 3 and parts[1] != '' and parts[3] != '' :
                 title = parts[3]
                 if start is None:   # start hasn't been specified
                     try:
-                        start = int(parts[1])+1 # if the page number is the first arab number use it as starrt
+                        _ = int(parts[1])+1 # if the page number is the first arab number use prev page+1 as start page number
+                        start = outline_items[-1].page_number+1 if len(outline_items) > 0 else 1 # if there are no previous items start from 1
                     except ValueError:
                         pass
                 page_number = getNumber(parts[1], start or 1)   # get page number with start fallback to 1
-                level = int(parts[0].count(' '*(args.input_tabsize or 1)))
+                level = int(parts[0].count(' '*args.input_tabsize))   # get level from indentation
                 if args and args.debug:
                     print("title: %s, page number: %s, level: %s, prev: %s" % (title, page_number, level, prev))
                 if level == 0:
@@ -65,7 +74,7 @@ def parseOutline(file_outline, start=1, args=None):
                     if start == None:
                         outline_items[-1].set_preface()
                     par = outline_items[-1]
-                elif prev - level < 2 or level <= prev:
+                elif level - prev < 2 or level <= prev:
                     while(prev >= level):
                         prev -= 1
                         par = par.parent
@@ -82,7 +91,8 @@ def parseOutline(file_outline, start=1, args=None):
     # stampo l'indice parsato (debug)
     if args and args.dry:
         for item in outline_items:
-            item.set_tabsize(args.output_tabsize)
+            if args.output_tabsize is not None:
+                item.set_tabsize(args.output_tabsize)
             print(repr(item))
 
     return outline_items
@@ -123,9 +133,6 @@ def main():
     # prendo gli argomenti
     args = getArgs()
     if args.mode == "write":
-        if not args.dry and not args.input_pdf_file:
-            print("PDF_outline_add write: error: the following arguments are required: input_pdf_file", file=sys.stderr)
-            exit(1)
         if not args.dry:
             file_input = args.input_pdf_file
         start = args.first_page
@@ -168,7 +175,7 @@ def main():
                 print(repr(item))
             print("Outline estratto con successo")
     else:
-        raise SystemExit("Error: invalid mode, must be 'write' or 'extract'")
+        raise SystemExit("Error: invalid mode, must be 'write' or 'extract'", 2)
 
 if __name__ == "__main__":
     main()

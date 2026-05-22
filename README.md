@@ -73,7 +73,7 @@ Subsections/paragraphs, if present, are written adding one additional space in f
 Pages befor the start of the "real" book, if present, are written using roman numeration:
 ```
 i prefazione
-v indicie
+v indice
 1 inizio libro
 ...
 ```
