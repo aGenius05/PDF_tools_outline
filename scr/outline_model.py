@@ -12,9 +12,11 @@ class OutlineElement:
 			if parent.page_number > self.page_number:
 				raise Exception("Error: page numbers must be in increasing order: page title: %s, page number: %s, level: %s but parent is at page %s\n" % (title, page_number, level, parent.page_number))
 		self.children = []
+		self.book_start = self.parent.book_start if parent is not None else 0
 
 	def set_preface(self):
 		self._preface = True
+		self.book_start = 0
 	
 	def from_OutlineItem(item: OutlineItem, pdf, start, level=0):
 		page = resolve_page_from_item(pdf, item)
@@ -51,7 +53,7 @@ class OutlineElement:
 			child.set_tabsize(tabsize)
 
 	def __repr__(self):
-		str_number = int_to_roman(self.page_number) if self._preface else str(self.page_number)
+		str_number = int_to_roman(self.page_number) if self._preface else str(self.page_number-self.book_start+1)
 		text = (self.level*self._tabsize*" ")+str_number+" "+self.title
 		if self.children != []:
 			for child in self.children:

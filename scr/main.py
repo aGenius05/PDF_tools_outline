@@ -73,6 +73,8 @@ def parseOutline(file_outline, start=1, args=None):
                     outline_items.append(OutlineElement(title, level, page_number))
                     if start == None:
                         outline_items[-1].set_preface()
+                    else:
+                        outline_items[-1].book_start = start
                     par = outline_items[-1]
                 elif level - prev < 2 or level <= prev:
                     while(prev >= level):
