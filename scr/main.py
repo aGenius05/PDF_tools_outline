@@ -68,10 +68,10 @@ def parseOutline(file_outline, start=1, args=None):
                 page_number = getNumber(parts[1], start or 1)   # get page number with start fallback to 1
                 level = int(parts[0].count(' '*args.input_tabsize))   # get level from indentation
                 if args and args.debug:
-                    print("title: %s, page number: %s, level: %s, prev: %s" % (title, page_number, level, prev))
+                    print("title: %s, page number: %s, level: %s, prev: %s, preface: %s" % (title, page_number, level, prev, "True" if start is None or page_number<start else "False"))
                 if level == 0:
                     outline_items.append(OutlineElement(title, level, page_number))
-                    if start == None:
+                    if start == None or page_number < start:
                         outline_items[-1].set_preface()
                     else:
                         outline_items[-1].book_start = start
@@ -81,7 +81,7 @@ def parseOutline(file_outline, start=1, args=None):
                         prev -= 1
                         par = par.parent
                     par.add_child(OutlineElement(title, level, page_number, par))
-                    if start == None:
+                    if start == None or page_number < start:
                         par.children[-1].set_preface()
                     par = par.children[-1]
                 else:

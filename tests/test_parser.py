@@ -71,7 +71,11 @@ class TestParser(unittest.TestCase):
 		# test an outline file that contains any level, with a start different from 1
 		self.start = None	# automatic first page detection
 		self.parseFile("tests/sample5/index_shifted.txt", "tests/sample5/index_ref_shifted.txt")
-	# TODO: test with first page override
+	def test_multiLevelShifted2(self):
+		# test an outline file that contains any level, with a start different from 1
+		self.start = 5	# automatic first page detection
+		self.args.debug = True # debug to check the page numbers and preface detection
+		self.parseFile("tests/sample5/index_shifted.txt", "tests/sample5/index_ref_shifted2.txt")
 
 if __name__ == '__main__':
 	unittest.main()

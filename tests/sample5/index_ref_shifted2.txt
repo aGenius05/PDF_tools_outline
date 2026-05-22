@@ -1,0 +1,114 @@
+title: titolo, page number: 1, level: 0, prev: 0, preface: True
+title: Capitolo 1: Sistemi di Controllo Caotico, page number: 5, level: 0, prev: 0, preface: False
+title: Sezione: Introduzione alle Turbolenze, page number: 5, level: 1, prev: 0, preface: False
+title: Sottosezione: Modelli di Fluidodinamica, page number: 5, level: 2, prev: 1, preface: False
+title: Sottosottosezione: Equazioni di Navier-Stokes, page number: 6, level: 3, prev: 2, preface: False
+title: Paragrafo: Analisi delle Micro-Correnti, page number: 6, level: 4, prev: 3, preface: False
+title: Sottoparagrafo: Dettaglio Molecolare A, page number: 7, level: 5, prev: 4, preface: False
+title: Sottoparagrafo: Dettaglio Molecolare B, page number: 7, level: 5, prev: 5, preface: False
+title: Sottoparagrafo: Dettaglio Molecolare C, page number: 7, level: 5, prev: 5, preface: False
+title: Sezione: Ritorno alla Teoria Generale, page number: 8, level: 1, prev: 5, preface: False
+title: Capitolo 2: Architetture Neurali Massive, page number: 9, level: 0, prev: 1, preface: False
+title: Sezione: Livelli di Convoluzione, page number: 9, level: 1, prev: 0, preface: False
+title: Paragrafo: Kernel di Filtrazione 3x3, page number: 9, level: 2, prev: 1, preface: False
+title: Paragrafo: Stride e Padding Ottimizzato, page number: 10, level: 2, prev: 2, preface: False
+title: Paragrafo: Funzioni di Attivazione ReLU, page number: 10, level: 2, prev: 2, preface: False
+title: Sottosezione: Pooling e Sottocampionamento, page number: 11, level: 1, prev: 2, preface: False
+title: Sottosottosezione: Max Pooling, page number: 11, level: 2, prev: 1, preface: False
+title: Paragrafo: Riduzione Dimensionalità, page number: 12, level: 3, prev: 2, preface: False
+title: Sottoparagrafo: Metodo A, page number: 12, level: 4, prev: 3, preface: False
+title: Sottoparagrafo: Metodo B, page number: 12, level: 4, prev: 4, preface: False
+title: Sottosottosezione: Average Pooling, page number: 13, level: 2, prev: 4, preface: False
+title: Capitolo 3: Logistica Quantistica, page number: 14, level: 0, prev: 2, preface: False
+title: Sezione: Distribuzione Interstellare, page number: 14, level: 1, prev: 0, preface: False
+title: Sottosottosezione: Calcolo delle Coordinate, page number: 15, level: 2, prev: 1, preface: False
+title: Sottosottosezione: Gestione del Carburante, page number: 15, level: 2, prev: 2, preface: False
+title: Paragrafo: Idrogeno Liquido, page number: 16, level: 3, prev: 2, preface: False
+title: Sottoparagrafo: Stoccaggio Criogenico, page number: 16, level: 4, prev: 3, preface: False
+title: Sottoparagrafo: Sistemi di Pompaggio, page number: 16, level: 4, prev: 4, preface: False
+title: Sottoparagrafo: Valvole di Sfogo, page number: 17, level: 4, prev: 4, preface: False
+title: Sottosottosezione: Navigazione Autonoma, page number: 18, level: 2, prev: 4, preface: False
+title: Capitolo 4: Bioetica Avanzata, page number: 19, level: 0, prev: 2, preface: False
+title: Sezione: Ingegneria Genetica, page number: 19, level: 1, prev: 0, preface: False
+title: Sottoparagrafo: Modifica CRISPR-Cas9, page number: 19, level: 2, prev: 1, preface: False
+title: Sottoparagrafo: Editing Germinale, page number: 20, level: 2, prev: 2, preface: False
+title: Sottosezione: Implicazioni Legali, page number: 21, level: 1, prev: 2, preface: False
+title: Sottoparagrafo: Diritto Internazionale, page number: 21, level: 2, prev: 1, preface: False
+title: Sottoparagrafo: Consenso Informato, page number: 22, level: 2, prev: 2, preface: False
+title: Capitolo 5: Economia dei Sistemi Chiusi, page number: 23, level: 0, prev: 2, preface: False
+title: Sezione: Mercati Circolari, page number: 23, level: 1, prev: 0, preface: False
+title: Capitolo 6: Robotica di Sciame, page number: 27, level: 0, prev: 1, preface: False
+title: Sezione: Comunicazione P2P, page number: 27, level: 1, prev: 0, preface: False
+title: Paragrafo: Latenza di Segnale, page number: 27, level: 2, prev: 1, preface: False
+title: Sottoparagrafo: Interferenze Elettromagnetiche, page number: 28, level: 3, prev: 2, preface: False
+title: Sottoparagrafo: Protocolli di Ripristino, page number: 28, level: 3, prev: 3, preface: False
+title: Sezione: Algoritmi Emergenti, page number: 29, level: 1, prev: 3, preface: False
+title: Sottosezione: Comportamento Gregario, page number: 29, level: 2, prev: 1, preface: False
+title: Capitolo 7: Geologia delle Lune Medicee, page number: 31, level: 0, prev: 2, preface: False
+title: Sezione: Superficie di Europa, page number: 31, level: 1, prev: 0, preface: False
+title: Sottoparagrafo: Analisi dei Ghiacci, page number: 31, level: 2, prev: 1, preface: False
+title: Sottoparagrafo: Presenza di Cloruri, page number: 32, level: 2, prev: 2, preface: False
+title: Sezione: Attività Vulcanica su Io, page number: 33, level: 1, prev: 2, preface: False
+title: Sottosottosezione: Flussi di Zolfo, page number: 33, level: 2, prev: 1, preface: False
+title: Capitolo 8: Archeologia Digitale, page number: 35, level: 0, prev: 2, preface: False
+title: Sezione: Recupero Supporti Magnetici, page number: 35, level: 1, prev: 0, preface: False
+title: Sottosezione: Floppy Disk 5.25, page number: 35, level: 2, prev: 1, preface: False
+title: Paragrafo: Degrado del Substrato, page number: 36, level: 3, prev: 2, preface: False
+title: Sottoparagrafo: Muffe e Funghi, page number: 36, level: 4, prev: 3, preface: False
+i titolo
+1 Capitolo 1: Sistemi di Controllo Caotico
+ 1 Sezione: Introduzione alle Turbolenze
+  1 Sottosezione: Modelli di Fluidodinamica
+   2 Sottosottosezione: Equazioni di Navier-Stokes
+    2 Paragrafo: Analisi delle Micro-Correnti
+     3 Sottoparagrafo: Dettaglio Molecolare A
+     3 Sottoparagrafo: Dettaglio Molecolare B
+     3 Sottoparagrafo: Dettaglio Molecolare C
+ 4 Sezione: Ritorno alla Teoria Generale
+5 Capitolo 2: Architetture Neurali Massive
+ 5 Sezione: Livelli di Convoluzione
+  5 Paragrafo: Kernel di Filtrazione 3x3
+  6 Paragrafo: Stride e Padding Ottimizzato
+  6 Paragrafo: Funzioni di Attivazione ReLU
+ 7 Sottosezione: Pooling e Sottocampionamento
+  7 Sottosottosezione: Max Pooling
+   8 Paragrafo: Riduzione Dimensionalità
+    8 Sottoparagrafo: Metodo A
+    8 Sottoparagrafo: Metodo B
+  9 Sottosottosezione: Average Pooling
+10 Capitolo 3: Logistica Quantistica
+ 10 Sezione: Distribuzione Interstellare
+  11 Sottosottosezione: Calcolo delle Coordinate
+  11 Sottosottosezione: Gestione del Carburante
+   12 Paragrafo: Idrogeno Liquido
+    12 Sottoparagrafo: Stoccaggio Criogenico
+    12 Sottoparagrafo: Sistemi di Pompaggio
+    13 Sottoparagrafo: Valvole di Sfogo
+  14 Sottosottosezione: Navigazione Autonoma
+15 Capitolo 4: Bioetica Avanzata
+ 15 Sezione: Ingegneria Genetica
+  15 Sottoparagrafo: Modifica CRISPR-Cas9
+  16 Sottoparagrafo: Editing Germinale
+ 17 Sottosezione: Implicazioni Legali
+  17 Sottoparagrafo: Diritto Internazionale
+  18 Sottoparagrafo: Consenso Informato
+19 Capitolo 5: Economia dei Sistemi Chiusi
+ 19 Sezione: Mercati Circolari
+23 Capitolo 6: Robotica di Sciame
+ 23 Sezione: Comunicazione P2P
+  23 Paragrafo: Latenza di Segnale
+   24 Sottoparagrafo: Interferenze Elettromagnetiche
+   24 Sottoparagrafo: Protocolli di Ripristino
+ 25 Sezione: Algoritmi Emergenti
+  25 Sottosezione: Comportamento Gregario
+27 Capitolo 7: Geologia delle Lune Medicee
+ 27 Sezione: Superficie di Europa
+  27 Sottoparagrafo: Analisi dei Ghiacci
+  28 Sottoparagrafo: Presenza di Cloruri
+ 29 Sezione: Attività Vulcanica su Io
+  29 Sottosottosezione: Flussi di Zolfo
+31 Capitolo 8: Archeologia Digitale
+ 31 Sezione: Recupero Supporti Magnetici
+  31 Sottosezione: Floppy Disk 5.25
+   32 Paragrafo: Degrado del Substrato
+    32 Sottoparagrafo: Muffe e Funghi
