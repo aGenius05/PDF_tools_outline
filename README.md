@@ -52,7 +52,7 @@ oppure con pip
 python3 -m build
 python3 -m twine dist/*
 ```
-## Utilizzo
+## Usage
 The usage is very simple:
 ```bash
 PDF_outline_add [file_input.pdf] [file_index] {-o [file_output.pdf]} {-s [first_page]}
